@@ -1,0 +1,17 @@
+Loading data into RAM
+CPU memory used (MB) 17
+Loading data into GPU
+GPU memory used (MB) 17
+Loading data into RAM
+CPU memory used (MB) 5
+Loading data into GPU
+GPU memory used (MB) 5
+Training set size: 2180
+Validation set size: 720
+Train SR network for WeatherBench model with lr 0.0005 using SignatureKernel scoring rule
+reached train
+  0%|          | 0/100 [00:00<?, ?it/s]/gpfs/home/stats/stubxk/ArcherDissEnv3/lib/python3.11/site-packages/numba/cuda/dispatcher.py:536: NumbaPerformanceWarning: [1mGrid size 9 will likely result in GPU under-utilization due to low occupancy.[0m
+  warn(NumbaPerformanceWarning(msg))
+/gpfs/home/stats/stubxk/ArcherDissEnv3/lib/python3.11/site-packages/numba/cuda/dispatcher.py:536: NumbaPerformanceWarning: [1mGrid size 3 will likely result in GPU under-utilization due to low occupancy.[0m
+  warn(NumbaPerformanceWarning(msg))
+  1%|          | 1/100 [10:29<17:18:15, 629.25s/it]  2%|▏         | 2/100 [20:58<17:07:19, 628.98s/it]  3%|▎         | 3/100 [31:25<16:56:01, 628.47s/it]  4%|▍         | 4/100 [41:53<16:45:09, 628.23s/it]  5%|▌         | 5/100 [52:22<16:34:51, 628.34s/it]  6%|▌         | 6/100 [1:02:50<16:24:04, 628.14s/it]  7%|▋         | 7/100 [1:13:18<16:13:46, 628.25s/it]  8%|▊         | 8/100 [1:23:46<16:03:08, 628.14s/it]  9%|▉         | 9/100 [1:34:14<15:52:38, 628.11s/it] 10%|█         | 10/100 [1:44:42<15:42:04, 628.05s/it] 11%|█         | 11/100 [1:55:11<15:31:55, 628.26s/it] 12%|█▏        | 12/100 [2:05:39<15:21:29, 628.29s/it] 13%|█▎        | 13/100 [2:16:00<15:07:50, 626.09s/it] 14%|█▍        | 14/100 [2:26:10<14:50:33, 621.31s/it] 15%|█▌        | 15/100 [2:36:21<14:35:29, 618.00s/it] 16%|█▌        | 16/100 [2:46:31<14:21:54, 615.64s/it] 17%|█▋        | 17/100 [2:56:41<14:09:28, 614.08s/it] 18%|█▊        | 18/100 [3:06:52<13:57:49, 613.04s/it] 19%
