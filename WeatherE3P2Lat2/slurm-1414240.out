@@ -14,3 +14,96 @@ reached train
   warn(NumbaPerformanceWarning(msg))
 /gpfs/home/stats/stubxk/ArcherDissEnv3/lib/python3.11/site-packages/numba/cuda/dispatcher.py:536: NumbaPerformanceWarning: [1mGrid size 3 will likely result in GPU under-utilization due to low occupancy.[0m
   warn(NumbaPerformanceWarning(msg))
+  1%|          | 1/100 [10:35<17:28:10, 635.25s/it]  2%|▏         | 2/100 [21:10<17:17:36, 635.27s/it]  3%|▎         | 3/100 [31:44<17:06:19, 634.84s/it]  4%|▍         | 4/100 [42:20<16:56:18, 635.19s/it]  5%|▌         | 5/100 [52:55<16:45:31, 635.07s/it]  6%|▌         | 6/100 [1:03:30<16:34:41, 634.91s/it]  7%|▋         | 7/100 [1:14:04<16:23:42, 634.65s/it]  8%|▊         | 8/100 [1:24:38<16:12:50, 634.46s/it]  9%|▉         | 9/100 [1:35:11<16:01:35, 634.01s/it] 10%|█         | 10/100 [1:45:32<15:45:03, 630.04s/it] 11%|█         | 11/100 [1:55:49<15:28:55, 626.24s/it] 12%|█▏        | 12/100 [2:06:07<15:14:33, 623.57s/it] 13%|█▎        | 13/100 [2:16:25<15:01:35, 621.78s/it] 14%|█▍        | 14/100 [2:26:42<14:49:16, 620.43s/it] 15%|█▌        | 15/100 [2:36:59<14:37:39, 619.53s/it] 16%|█▌        | 16/100 [2:47:16<14:26:17, 618.78s/it] 17%|█▋        | 17/100 [2:57:35<14:15:41, 618.58s/it] 18%|█▊        | 18/100 [3:07:52<14:04:53, 618.22s/it] 19%|█▉        | 19/100 [3:18:10<13:54:32, 618.18s/it] 20%|██        | 20/100 [3:28:27<13:43:43, 617.79s/it] 21%|██        | 21/100 [3:38:44<13:33:07, 617.56s/it] 22%|██▏       | 22/100 [3:49:02<13:22:59, 617.69s/it] 23%|██▎       | 23/100 [3:59:20<13:12:49, 617.79s/it] 24%|██▍       | 24/100 [4:09:37<13:02:17, 617.59s/it] 25%|██▌       | 25/100 [4:19:55<12:52:08, 617.71s/it] 26%|██▌       | 26/100 [4:30:12<12:41:38, 617.55s/it] 27%|██▋       | 27/100 [4:40:29<12:31:03, 617.31s/it] 28%|██▊       | 28/100 [4:50:46<12:20:48, 617.34s/it] 29%|██▉       | 29/100 [5:01:04<12:10:27, 617.29s/it] 30%|███       | 30/100 [5:11:21<12:00:14, 617.35s/it] 31%|███       | 31/100 [5:21:38<11:49:57, 617.36s/it] 32%|███▏      | 32/100 [5:31:56<11:39:53, 617.55s/it] 33%|███▎      | 33/100 [5:42:14<11:29:38, 617.59s/it] 34%|███▍      | 34/100 [5:52:32<11:19:22, 617.61s/it] 35%|███▌      | 35/100 [6:02:50<11:09:15, 617.78s/it] 36%|███▌      | 36/100 [6:13:08<10:59:00, 617.83s/it] 37%|███▋      | 37/100 [6:23:26<10:48:39, 617.77s/it] 38%|███▊      | 38/100 [6:33:43<10:38:12, 617.62s/it] 39%|███▉      | 39/100 [6:44:00<10:27:39, 617.37s/it] 40%|████      | 40/100 [6:54:16<10:17:14, 617.24s/it] 41%|████      | 41/100 [7:04:34<10:06:53, 617.19s/it] 42%|████▏     | 42/100 [7:14:50<9:56:29, 617.05s/it]  43%|████▎     | 43/100 [7:25:07<9:46:12, 617.07s/it] 44%|████▍     | 44/100 [7:35:25<9:35:58, 617.12s/it] 44%|████▍     | 44/100 [7:45:42<9:52:42, 635.05s/it]
+Epoch: 1/100. Train set: Average loss: -126.3469
+Epoch: 1/100. Validation set: Average loss: -141.9312
+Epoch: 2/100. Train set: Average loss: -145.6609
+Epoch: 2/100. Validation set: Average loss: -143.3332
+Epoch: 3/100. Train set: Average loss: -148.5921
+Epoch: 3/100. Validation set: Average loss: -142.6355
+Epoch: 4/100. Train set: Average loss: -150.1892
+Epoch: 4/100. Validation set: Average loss: -144.5559
+Epoch: 5/100. Train set: Average loss: -151.3438
+Epoch: 5/100. Validation set: Average loss: -145.5794
+Epoch: 6/100. Train set: Average loss: -152.2859
+Epoch: 6/100. Validation set: Average loss: -146.4424
+Epoch: 7/100. Train set: Average loss: -153.0591
+Epoch: 7/100. Validation set: Average loss: -146.5480
+Epoch: 8/100. Train set: Average loss: -153.9492
+Epoch: 8/100. Validation set: Average loss: -144.3171
+Epoch: 9/100. Train set: Average loss: -154.5665
+Epoch: 9/100. Validation set: Average loss: -144.3924
+Epoch: 10/100. Train set: Average loss: -155.1402
+Epoch: 10/100. Validation set: Average loss: -147.5355
+Epoch: 11/100. Train set: Average loss: -155.5202
+Epoch: 11/100. Validation set: Average loss: -147.2013
+Epoch: 12/100. Train set: Average loss: -156.0154
+Epoch: 12/100. Validation set: Average loss: -143.5289
+Epoch: 13/100. Train set: Average loss: -156.3313
+Epoch: 13/100. Validation set: Average loss: -145.2024
+Epoch: 14/100. Train set: Average loss: -156.8995
+Epoch: 14/100. Validation set: Average loss: -143.5731
+Epoch: 15/100. Train set: Average loss: -157.2040
+Epoch: 15/100. Validation set: Average loss: -145.5980
+Epoch: 16/100. Train set: Average loss: -157.3385
+Epoch: 16/100. Validation set: Average loss: -146.0696
+Epoch: 17/100. Train set: Average loss: -157.6453
+Epoch: 17/100. Validation set: Average loss: -146.1843
+Epoch: 18/100. Train set: Average loss: -158.0160
+Epoch: 18/100. Validation set: Average loss: -146.8372
+Epoch: 19/100. Train set: Average loss: -158.3274
+Epoch: 19/100. Validation set: Average loss: -147.0093
+Epoch: 20/100. Train set: Average loss: -158.7466
+Epoch: 20/100. Validation set: Average loss: -146.5713
+Epoch: 21/100. Train set: Average loss: -159.0731
+Epoch: 21/100. Validation set: Average loss: -146.3867
+Epoch: 22/100. Train set: Average loss: -159.2830
+Epoch: 22/100. Validation set: Average loss: -146.6230
+Epoch: 23/100. Train set: Average loss: -159.4247
+Epoch: 23/100. Validation set: Average loss: -146.4554
+Epoch: 24/100. Train set: Average loss: -159.6108
+Epoch: 24/100. Validation set: Average loss: -147.2452
+Epoch: 25/100. Train set: Average loss: -159.6586
+Epoch: 25/100. Validation set: Average loss: -147.8677
+Epoch: 26/100. Train set: Average loss: -159.8813
+Epoch: 26/100. Validation set: Average loss: -146.9632
+Epoch: 27/100. Train set: Average loss: -160.2445
+Epoch: 27/100. Validation set: Average loss: -146.2820
+Epoch: 28/100. Train set: Average loss: -160.5906
+Epoch: 28/100. Validation set: Average loss: -144.9799
+Epoch: 29/100. Train set: Average loss: -160.7706
+Epoch: 29/100. Validation set: Average loss: -145.4192
+Epoch: 30/100. Train set: Average loss: -160.8667
+Epoch: 30/100. Validation set: Average loss: -147.2158
+Epoch: 31/100. Train set: Average loss: -160.9964
+Epoch: 31/100. Validation set: Average loss: -146.8344
+Epoch: 32/100. Train set: Average loss: -160.9675
+Epoch: 32/100. Validation set: Average loss: -146.2244
+Epoch: 33/100. Train set: Average loss: -161.0886
+Epoch: 33/100. Validation set: Average loss: -146.5871
+Epoch: 34/100. Train set: Average loss: -161.0624
+Epoch: 34/100. Validation set: Average loss: -147.1580
+Epoch: 35/100. Train set: Average loss: -161.2095
+Epoch: 35/100. Validation set: Average loss: -147.0189
+Epoch: 36/100. Train set: Average loss: -161.2331
+Epoch: 36/100. Validation set: Average loss: -146.0800
+Epoch: 37/100. Train set: Average loss: -161.5274
+Epoch: 37/100. Validation set: Average loss: -147.2803
+Epoch: 38/100. Train set: Average loss: -161.8587
+Epoch: 38/100. Validation set: Average loss: -147.7243
+Epoch: 39/100. Train set: Average loss: -162.1238
+Epoch: 39/100. Validation set: Average loss: -147.2906
+Epoch: 40/100. Train set: Average loss: -162.2862
+Epoch: 40/100. Validation set: Average loss: -147.5283
+Epoch: 41/100. Train set: Average loss: -162.2919
+Epoch: 41/100. Validation set: Average loss: -147.9257
+Epoch: 42/100. Train set: Average loss: -162.3024
+Epoch: 42/100. Validation set: Average loss: -145.8370
+Epoch: 43/100. Train set: Average loss: -162.3959
+Epoch: 43/100. Validation set: Average loss: -145.0451
+Epoch: 44/100. Train set: Average loss: -162.3672
+Epoch: 44/100. Validation set: Average loss: -144.8611
+Epoch: 45/100. Train set: Average loss: -162.3737
+Epoch: 45/100. Validation set: Average loss: -145.6161
+yo?
+Training time: 27942.32 seconds

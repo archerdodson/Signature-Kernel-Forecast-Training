@@ -14,3 +14,6 @@ reached train
   warn(NumbaPerformanceWarning(msg))
 /gpfs/home/stats/stubxk/ArcherDissEnv3/lib/python3.11/site-packages/numba/cuda/dispatcher.py:536: NumbaPerformanceWarning: [1mGrid size 3 will likely result in GPU under-utilization due to low occupancy.[0m
   warn(NumbaPerformanceWarning(msg))
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** JOB 1414076 ON gpu010 CANCELLED AT 2025-04-09T23:18:25 ***
+  1%|          | 1/100 [27:01<44:34:56, 1621.18s/it]  2%|▏         | 2/100 [53:42<43:48:26, 1609.25s/it]  3%|▎         | 3/100 [1:20:17<43:11:44, 1603.14s/it]  4%|▍         | 4/100 [1:46:37<42:29:58, 1593.74s/it]  5%|▌         | 5/100 [2:12:48<41:50:18, 1585.45s/it]  6%|▌         | 6/100 [2:38:59<41:16:27, 1580.72s/it]  7%|▋         | 7/100 [3:05:23<40:51:34, 1581.66s/it]  8%|▊         | 8/100 [3:31:48<40:27:08, 1582.92s/it]  9%|▉         | 9/100 [3:58:13<40:01:49, 1583.62s/it] 10%|█         | 10/100 [4:24:38<39:36:05, 1584.06s/it] 11%|█         | 11/100 [4:51:02<39:09:30, 1583.94s/it] 12%|█▏        | 12/100 [5:17:27<38:43:26, 1584.16s/it] 13%|█▎        | 13/100 [5:43:47<38:15:26, 1583.06s/it]slurmstepd: error: *** STEP 1414076.0 ON gpu010 CANCELLED AT 2025-04-09T23:18:25 ***

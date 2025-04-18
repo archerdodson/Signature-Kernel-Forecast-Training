@@ -1,0 +1,19 @@
+Loading data into RAM
+CPU memory used (MB) 17
+Loading data into GPU
+GPU memory used (MB) 17
+Loading data into RAM
+CPU memory used (MB) 5
+Loading data into GPU
+GPU memory used (MB) 5
+Training set size: 2162
+Validation set size: 702
+Train SR network for WeatherBench model with lr 0.0005 using SignatureKernel scoring rule
+reached train
+  0%|          | 0/100 [00:00<?, ?it/s]/gpfs/home/stats/stubxk/ArcherDissEnv3/lib/python3.11/site-packages/numba/cuda/dispatcher.py:536: NumbaPerformanceWarning: [1mGrid size 9 will likely result in GPU under-utilization due to low occupancy.[0m
+  warn(NumbaPerformanceWarning(msg))
+/gpfs/home/stats/stubxk/ArcherDissEnv3/lib/python3.11/site-packages/numba/cuda/dispatcher.py:536: NumbaPerformanceWarning: [1mGrid size 3 will likely result in GPU under-utilization due to low occupancy.[0m
+  warn(NumbaPerformanceWarning(msg))
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** JOB 1414243 ON gpu001 CANCELLED AT 2025-04-09T23:17:55 ***
+  1%|          | 1/100 [26:37<43:55:50, 1597.48s/it]  2%|▏         | 2/100 [52:30<42:46:54, 1571.57s/it]  3%|▎         | 3/100 [1:18:15<42:00:42, 1559.20s/it]  4%|▍         | 4/100 [1:43:56<41:23:18, 1552.07s/it]  5%|▌         | 5/100 [2:09:41<40:53:39, 1549.68s/it]slurmstepd: error: *** STEP 1414243.0 ON gpu001 CANCELLED AT 2025-04-09T23:17:55 ***
