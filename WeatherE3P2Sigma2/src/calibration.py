@@ -204,6 +204,64 @@ def CRPS_weighted(theta_samples, theta_test, weights):
     cal_errs = np.concatenate(cal_errs, axis=0)
     return cal_errs
 
+def relative_quantile_error(theta_samples, theta_test, d_resolution=50):
+    """
+    Computes the relative quantile error (RQE) of an approximate posterior per parameter.
+    The RQE compares top-level quantiles of the forecast distribution (samples) to the 
+    quantiles of the true test values.
+
+    ----------
+    
+    Arguments:
+    theta_samples       : np.ndarray of shape (n_samples, n_test, n_params) -- the samples from
+                          the approximate posterior
+    theta_test          : np.ndarray of shape (n_test, n_params) -- the 'true' test values
+    d_resolution        : int -- the number of quantiles to consider (e.g., 50)
+
+    ----------
+
+    Returns:
+
+    rqe  : np.ndarray of shape (n_params, ) -- the relative quantile error per parameter
+    """
+    
+    n_params = theta_test.shape[1]
+    n_test = theta_test.shape[0]
+
+    # Define quantile levels from 90% to 99.99% on a log-linear scale
+    log_qs = np.linspace(np.log10(0.90), np.log10(0.9999), d_resolution)
+    quantile_levels = 10**log_qs
+
+    rqe = np.zeros(n_params)
+
+    for k in range(n_params):
+        rqe_sum = 0.0
+
+        for q in quantile_levels:
+            # Compute quantile from forecast samples and test values
+            q_hat = np.quantile(theta_samples[:, :, k].reshape(-1), q)
+            q_true = np.quantile(theta_test[:, k], q)
+
+            # Avoid division by zero
+            if q_true != 0:
+                rqe_sum += q_true - q_hat / q_true
+
+        rqe[k] = rqe_sum / d_resolution
+
+    return rqe
+
+
+def RQE_weighted(theta_samples, theta_test, weights):
+    cal_errs = []
+    for lat in range(theta_samples.shape[2]):
+        samplelat = theta_samples[:,:,lat,:]
+        testlat = theta_test[:,lat,:]
+
+        vals = relative_quantile_error(samplelat, testlat)*weights[lat]
+        cal_errs.append(vals) #append vals (which itself is a np.ndarray of shape (n_params/lats, )
+    cal_errs = np.concatenate(cal_errs, axis=0)
+    return cal_errs
+
 
 
 

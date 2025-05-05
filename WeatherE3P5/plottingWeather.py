@@ -15,7 +15,7 @@ from src.scoring_rules import EnergyScore, KernelScore, SignatureKernel, EnergyS
 from src.utils import load_net, estimate_bandwidth_timeseries, lorenz96_variogram, def_loader_kwargs, \
     weatherbench_variogram_haversine
 from src.parsers import parser_predict, define_masks, nonlinearities_dict, setup
-from src.calibration import calibration_error, R2, rmse, plot_metrics_params, calibration_error_weighted, rmse_error_weighted, r2_error_weighted, CRPS, CRPS_weighted
+#from src.calibration import calibration_error, R2, rmse, plot_metrics_params, calibration_error_weighted, rmse_error_weighted, r2_error_weighted, CRPS, CRPS_weighted
 from src.weatherbench_utils import load_weatherbench_data
 from src.weatherbench_utils import load_weatherbench_data, convert_tensor_to_da, plot_map_ax
 
@@ -40,7 +40,7 @@ weatherbench_small = False
 name_postfix = '_mytrainedmodelSignatureKernel' ##Change this
 training_ensemble_size = 3  #3/10
 prediction_ensemble_size = 5 ##3/10
-prediction_length = 5 
+prediction_length = 2  
 
 weights = np.array([0.07704437, 0.23039114, 0.38151911, 0.52897285, 0.67133229,
        0.80722643, 0.93534654, 1.05445875, 1.16341595, 1.26116882,
@@ -383,7 +383,7 @@ if save_plots:
                             global_projection=global_projection, vmax=vmax, vmin=vmin)
     for i in range(n_predictions_for_plots):
         p_pred = plot_map_ax(da_predictions[i][:, :, 0],
-                                title=f"Prediction" + ("{i + 1}" if method != "regression" else ""),
+                                title=f"Prediction " + (f"{i + 1}" if method != "regression" else ""),
                                 ax=axes.flatten()[i + 1], global_projection=global_projection, vmax=vmax, vmin=vmin)
     # add now the colorbar:
     fig.subplots_adjust(right=0.9)
@@ -403,7 +403,7 @@ if save_plots:
 
     for i in range(n_predictions_for_plots):
         p_pred = plot_map_ax(differences[i][:, :, 0],
-                                title=f"Prediction" + ("{i + 1}" if method != "regression" else ""),
+                                title=f"Prediction " + (f"{i + 1}" if method != "regression" else ""),
                                 ax=axes.flatten()[i + 1], global_projection=global_projection, vmax=vmax, vmin=vmin)
     # add now the colorbar:
     fig.subplots_adjust(right=0.9)
