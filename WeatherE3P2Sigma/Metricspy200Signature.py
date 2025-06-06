@@ -36,7 +36,7 @@ weatherbench_small = False
 #name_postfix = '_mytrainedmodelEnergyScore' ##Change this
 name_postfix = '_mytrainedmodelSignatureKernel' ##Change this
 training_ensemble_size = 3  #3/10
-prediction_ensemble_size = 10 ##3/10
+prediction_ensemble_size = 200 ##3/10
 prediction_length = 2  
 
 weights = np.array([0.07704437, 0.23039114, 0.38151911, 0.52897285, 0.67133229,
@@ -57,8 +57,8 @@ no_early_stop = True
 critic_steps_every_generator_step = 1
 
 save_plots = True
-cuda = True
-load_all_data_GPU = True
+cuda = False
+load_all_data_GPU = False
 
 nonlinearity = 'leaky_relu'
 data_size = torch.Size([10, 32, 64])              # For Lorenz63, typically data_size=1 or 3
@@ -471,112 +471,33 @@ with torch.no_grad():
     string2 += f"\n\t\t {cal_err_values.mean():.4f} $ \pm$ {cal_err_values.std():.4f} & {rmse_values.mean():.4f}  $ \pm$ {rmse_values.std():.4f} &  {r2_values.mean():.4f} $ \pm$ {r2_values.std():.4f} \\\\ \n"
     string2 += f"\n\t\t {cal_err_values.mean():.4f}  & {rmse_values.mean():.4f}  &  {r2_values.mean():.4f}  \\\\ \n"
     print(string2)
+    # Append the NaN/Inf check
+    string2 += "\nNaN/Inf check for metric arrays:\n"
 
-    # -- plots --
-with torch.no_grad():
-    # if model_is_weatherbench:
-    #     # we visualize only the first 8 variables.
-    #     variable_list = np.linspace(0, target_data_test.shape[-1] - 1, 8, dtype=int)
-    #     predictions_test = predictions_test[:, :, variable_list]
-    #     target_data_test = target_data_test[:, variable_list]
-    #     predictions_for_calibration = predictions_for_calibration[:, :, variable_list]
-    #     target_data_test_for_calibration = target_data_test_for_calibration[:, variable_list]
-    predictions_test = predictions_test.reshape(99, prediction_ensemble_size,data_size)
-    target_data_test = target_data_test.reshape(99, data_size)
-    predictions_test_for_plot = predictions_test.cpu()
-    target_data_test_for_plot = target_data_test.cpu()
-    time_vec = torch.arange(len(predictions_test)).cpu()
-    data_size = predictions_test_for_plot.shape[-1]
+    all_metrics = [
+        ("Cal error", cal_err_values),
+        ("RMSE", rmse_values),
+        ("R2", r2_values),
+        ("NCRPS", CRPS_values),
+        ("RQE", RQE_values),
+        ("Cal error (weighted)", cal_err_values_weighted),
+        ("RMSE (weighted)", rmse_values_weighted),
+        ("R2 (weighted)", r2_values_weighted),
+        ("NCRPS (weighted)", CRPS_values_weighted),
+        ("RQE (weighted)", RQE_values_weighted),
+    ]
 
-    # if model == "lorenz":
-    #     var_names = [r"$y$"]
-    # elif model == "WeatherBench":
-    #     # todo write here the correct lon and lat coordinates!
-    #     var_names = [r"$x_{}$".format(i + 1) for i in range(data_size)]
-    # else:
-    data_size = 3
-    var_names = [r"$x_{}$".format(i + 1) for i in range(data_size)]
+    for name, arr in all_metrics:
+        try:
+            has_nan = np.isnan(arr).any()
+            has_inf = np.isinf(arr).any()
+            shape = arr.shape
+        except Exception as e:
+            string2 += f"{name}: Error while checking array: {str(e)}\n"
+            continue
 
-    # predictions: mean +- std
-    label_size = 13
-    if method != "regression":
-        predictions_mean = torch.mean(predictions_test_for_plot, dim=1).detach().numpy()
-        predictions_std = torch.std(predictions_test_for_plot, dim=1).detach().numpy()
-
-        fig, ax = plt.subplots(nrows=data_size, ncols=1, sharex="col", figsize=(6.4, 3) if data_size == 1 else None)
-        if data_size == 1:
-            ax = [ax]
-        for var in range(data_size):
-            ax[var].plot(time_vec[plot_start_timestep:plot_end_timestep],
-                         target_data_test_for_plot[plot_start_timestep:plot_end_timestep, var], ls="--",
-                         color=f"C{var}")
-            ax[var].plot(time_vec[plot_start_timestep:plot_end_timestep],
-                         predictions_mean[plot_start_timestep:plot_end_timestep, var], ls="-", color=f"C{var}")
-            ax[var].fill_between(
-                time_vec[plot_start_timestep:plot_end_timestep], alpha=0.3, color=f"C{var}",
-                y1=predictions_mean[plot_start_timestep:plot_end_timestep, var] -
-                   predictions_std[plot_start_timestep:plot_end_timestep, var],
-                y2=predictions_mean[plot_start_timestep:plot_end_timestep, var] +
-                   predictions_std[plot_start_timestep:plot_end_timestep, var])
-            ax[var].set_ylabel(var_names[var], size=label_size)
-
-        ax[-1].set_xlabel("Integration time index")
-        fig.suptitle(r"Mean $\pm$ std, " + model)
-        # plt.show()
-        if save_plots:
-            plt.savefig(nets_folder + f"prediction{name_postfix}.png")
-        plt.close()
-
-    # predictions: median and 99% quantile region
-    np_predictions = predictions_test_for_plot.detach().numpy()
-    size = 99
-    predictions_median = np.median(np_predictions, axis=1)
-    if method != "regression":
-        predictions_lower = np.percentile(np_predictions, 50 - size / 2, axis=1)
-        predictions_upper = np.percentile(np_predictions, 50 + size / 2, axis=1)
-
-    fig, ax = plt.subplots(nrows=data_size, ncols=1, sharex="col", figsize=(6.4, 3) if data_size == 1 else None)
-    if data_size == 1:
-        ax = [ax]
-    for var in range(data_size):
-        ax[var].plot(time_vec[plot_start_timestep:plot_end_timestep],
-                     target_data_test_for_plot[plot_start_timestep:plot_end_timestep, var], ls="--", color=f"C{var}",
-                     label="True")
-        ax[var].plot(time_vec[plot_start_timestep:plot_end_timestep],
-                     predictions_median[plot_start_timestep:plot_end_timestep, var], ls="-", color=f"C{var}",
-                     label="Median forecast" if method != "regression" else "Forecast")
-        if method != "regression":
-            ax[var].fill_between(
-                time_vec[plot_start_timestep:plot_end_timestep], alpha=0.3, color=f"C{var}",
-                y1=predictions_lower[plot_start_timestep:plot_end_timestep, var],
-                y2=predictions_upper[plot_start_timestep:plot_end_timestep, var], label="99% credible region")
-        ax[var].set_ylabel(var_names[var], size=label_size)
-        ax[var].tick_params(axis='both', which='major', labelsize=label_size)
-
-    if data_size == 1:
-        ax[0].legend(fontsize=label_size)
-
-    ax[-1].set_xlabel(r"$t$", size=label_size)
-    # fig.suptitle(f"Median and {size}% credible region, " + model_name_for_plot, size=title_size)
-    # plt.show()
-
-    if save_plots:
-        # save the metrics in file
-        text_file = open(nets_folder + f"test_losses{name_postfix}.txt", "w")
-        text_file.write(string + "\n")
-        text_file.write(string2 + "\n")
-        text_file.close()
-        # save the plot:
-
-        if data_size == 1:
-            bbox = Bbox(np.array([[0, -0.2], [6.1, 3]]))
-        else:
-            bbox = Bbox(np.array([[0, -0.2], [6.0, 4.8]]))
-        plt.savefig(nets_folder + f"prediction_median{name_postfix}." + ("pdf" if save_pdf else "png"), dpi=400,
-                    bbox_inches=bbox)
-    plt.close()
-
-    if not model_is_weatherbench:
-        # metrics plots
-        plot_metrics_params(cal_err_values, rmse_values, r2_values,
-                            filename=nets_folder + f"metrics{name_postfix}.png" if save_plots else None)
+        string2 += f"{name}: has_nan={has_nan}, has_inf={has_inf}, shape={shape}\n"
+    # Save to file
+    output_filename = "results/nets/calibration_metrics_Energy.txt"
+    with open(output_filename, "w") as f:
+        f.write(string2)
